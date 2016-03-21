@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang= 'en-gb' >
+	<head>
+		<meta charset= 'utf-8' />
+		<title>PINT Common heartbeat protocol invitanion</title>
+		<meta description=
+'invitation to define a common heartbeat protocol for PINT'
+			/>
+		<style>
+			body
+			{
+				font-size: smaller;
+				max-width: 40em;
+				margin-left: auto;
+				margin-right: auto;
+				font-family:serif;
+				counter-reset:
+					chapternumber
+					extranumber
+					appendixnumber;
+			}
+			h1,h2{font-family: sans-serif;}
+			th{border-bottom: solid thin;}
+			td{padding-right: 1ex;}
+			tr + tr > th:first-child
+			{
+				border-bottom: none;
+				border-right: solid thin;
+				padding-bottom: .5ex;
+				padding-top: .5ex;
+			}
+			aside,sup>a{font-size: smaller;}
+			body>section>h1::before
+			{
+				content: counter(chapternumber) ". ";
+				counter-increment: chapternumber;
+			}
+			header>nav>h1::before,header>section>h1::before
+			{
+				content:counter(extranumber,lower-roman) ". ";
+				counter-increment: extranumber;
+			}
+			body>article>h1::before
+			{
+				content:
+					"Appendix "
+					counter(appendixnumber, upper-alpha)
+					" - ";
+				counter-increment: appendixnumber;
+			}
+			img{max-width:100%;}
+			figure>blockquote{margin-left:0;}
+			figure>blockquote+figcaption::before{content:"\2014 "}
+			@media screen
+			{
+				body{color:#444;background:#eee;}
+				tr:nth-child(even) {background-color: #ddd;}
+				tr:nth-child(odd) {background-color: #eee;}
+				/* TODO: spacer gif is not nice. Try something
+				like margin-bottom or margin-top? */
+				img#spacergif{display:none;}
+			}
+			@media print
+			{
+				a:link,a:visited
+				{color: inherit;text-decoration:none;}
+				tr:nth-child(even)
+				{background-color: #eee !important;}
+				tr:nth-child(odd)
+				{background-color: #fff !important;}
+				h1
+				{
+					page-break-before:auto;
+					page-break-after:avoid
+				}
+				header>nav>h1,
+				body>article>h1,
+				body>section>h1,
+				header>section>h1
+				{
+					page-break-before:always;
+					page-break-after:avoid;
+				}
+				p,dl,ul,ol,table{page-break-inside:avoid;}
+				section#references a:after
+				{
+					font-size: smaller;
+					font-family: monospace;
+					display:block;
+					content: attr(href);
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<header id= 'cover' >
+			<hgroup id= 'title' >
+				<h1>Project Integration</h1>
+				<h2>Common heartbeat protocol invitation</h2>
+			</hgroup>
+			<p>Saxion Academy of Lifescience Engineering &amp; Design</p>
+			<img id= 'spacergif' alt='' width= '100%' src= 'data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=' />
+			<dl>
+				<dt>Version</dt>
+				<dd>0.9</dd>
+				<dt>Date</dt>
+				<dd>2016-03-21</dd>
+				<dt>Place</dt>
+				<dd>Enschede</dd>
+				<dt>Signees</dt>
+				<dd><table>
+					<tr>
+						<th>Team #</th>
+						<th>Delegate</th>
+						<th>Student number</th>
+					</tr>
+					<tr>
+						<td>5</td>
+						<td>Berend Al</td>
+						<td>405759</td>
+					</tr>
+				</table></dd>
+			</dl>
+			<nav id= 'toc' >
+				<h1>Table of contents</h1>
+				<dl>
+					<dt>Chapters</dt>
+					<dd><ol>
+						<li><a href= '#background' >Background information</a></li>
+						<li><a href= '#scope' >Scope</a></li>
+						<li><a href= '#quality' >Quality control</a></li>
+						<li><a href= '#references' >References</a></li>
+					</ol></dd>
+				</dl>
+			</nav>
+		</header>
+		<section id= 'background' >
+			<h1>Background information</h1>
+			<p>
+Acedemy Lifescience Engineering and Design has drafted five teams to work on
+<cite>Project Integration</cite>,
+where a portable heartbeat sensor is developed.
+All teams are required to build a Mobile device and a Stationary device that
+respectively measure and display the heartbeat;
+These two devices are to communicate wirelessly.
+The five teams all work independently,
+but one requirement dictates that all devices must interoperate.
+			</p>
+			<figure>
+				<blockquote>
+The interface between mobile and fixed part shall be equal for all
+project groups. So, the fixed part of one groups operates on the mobile part
+of any group.
+				</blockquote>
+				<figcaption>Assignment PINT 2016</figcaption>
+			</figure>
+			<p>
+This is statistically impossible<sup>[citation needed]</sup> to happen without
+some kind of standardisation.
+This document shall provide agreement between teams on how to ensure a minimal
+level of interoperability.
+			</p>
+		</section>
+		<section id= 'scope' >
+			<h1>Scope</h1>
+			<p>
+This invitation proposes to standardise the OSI <em>Host</em> layers of all devices,
+leaving only the <em>Media</em> layers unspecified.
+This means that the devices do not strictly interoperate,
+but it retains the signee's right to choose
+their own preferred wireless technology.
+			</p>
+			<p>
+Even though the application layer is standardised,
+this does not imply that the sensor or data must be equal between all teams.
+Each team can choose their own preferred sensor
+and they can choose what data to extract and display.
+The common protocol will only ensure that the data shared
+between any two devices is interpretable and never misinterpreted;
+The data can be communicated between the systems,
+but it remains up to the system if the data is used or ignored.
+			</p>
+			<img alt= 'The sensor hardware and logic are not standardised, but interface with the common protocol. The common protocol interfaces with the wireless driver and hardware, which is not standardised but open sourced. The wireless driver talks to the other device, where the common protocol interprets the data, and interfaces with the dataprocessing and display' title= 'relationship between the common protocol and other system components' src= 'comproto.svg' />
+			<p>
+When the host layers are common between two teams,
+the devices will interoperate when the teams have chosen the same
+wireless technology.
+If the wireless technology between two teams is different,
+making the devices interoperate would only require a wireless adapter or
+bridge to translate between the two technologies.
+Such an adapter or bridge is relatively simple to build or even integrate
+into the system.
+			</p>
+			<p>
+The common protocol will standardise device handshaking, semantics, and data
+encodings. The implementation method or language are not standardised,
+and each team may choose their preferred methods. 
+			</p>
+		</section>
+		<section id= 'organisation' >
+			<h1>Organisation</h1>
+			<p>
+The protocol shall be specified collectively by the teams willing to
+<q>sign</q> this document.
+Signatures, as well as amendements to this document may be submitted as
+pull requests to
+<a href= 'https://github.com/bernard-saxion/pint-heartbeat-protocol' ><code>
+https://github.com/bernard-saxion/pint-heartbeat-protocol</a></code>.
+Alternatively, the document's author may be contacted on campus or through
+saxion email.
+To sign this document, simply add your team number and contact details to
+the <q>Signees</q> table on the first page.
+			</p>
+			<p>
+This same repository shall hold the protocol specification.
+Specification is done by submitting pull requests.
+Pull requests will be discussed in the comments,
+and when consensus is reached the pull request is accepted.
+			</p>
+			<p>
+Each part of the specification should strive to at least include:
+			</p>
+			<ol>
+				<li>
+Description of what functionality this part provides
+				</li>
+				<li>
+Motivation for why this functionality is desirable
+				</li>
+				<li>
+When the mobile/stationary part should invoke this part
+				</li>
+				<li>
+What the mobile/stationary part should do when the specified part is received.
+				</li>
+				<li>How the data is encoded</li>
+			</ol>
+			<!--aside>
+A good example specification is the <cite>Classic Protocol Extension</cite>
+on wiki.vg
+			</aside-->
+			<p>
+In addition to the specification,
+teams must share their wireless drivers so that inter-team bridges may be
+developed and full interoperability may be achieved.
+			</p>
+			<p>
+Teams may share their protocol implementations as a library
+for other teams to use and contribute to.
+Doing so may decrease the amount of work needed to maintain protocol
+compatibility between teams.
+			</p>
+			<p>
+The recommended workflow is for each team to make a fork of
+the protocol repository.
+The teams will then work on a branch until they want to submit a pull request
+to propose to have their changes standardised.
+			</p>
+		</section>
+		<section id= 'quality' >
+			<h1>Quality Control</h1>
+			<p>
+This document dictates peer review as its only formal quality control.
+This in an attempt to keep organisational overhead as low as possible.
+If a team wants more strenuous quality control
+they may submit a pull request to amend this chapter,
+or they may negotiate with other individual teams.
+			</p>
+			<h2>Risks</h2>
+			<p>
+There is strictly no control over whether or not the signees implement
+the protocol faithfully.
+Deviant implementations may cause a team to claim compatibility with another
+team where there is none.
+If a team wants to verify compatibility with another team,
+they have to negotiate amongst themselves.
+			</p>
+			<p>
+Since the protocol will be developed at the same time as the implementations
+are developed,
+this will inevitably cause back- and forward incompatibilities.
+This is a pervasive unsolved problem in tech,
+so apart from mandating use of a version control tool (git)
+this will not be addressed.
+			</p>
+			<p>
+This document takes away some freedoms from the signees;
+Some teams may refuse to sign.
+While strictly one renegade team can cause all other teams to fail their
+interoperability requirement.
+It is argued that compatibility with some teams is better than
+compatibility with no teams.
+			</p>
+			<p>
+By signing this document the signee puts the protocol specification under
+exclusive control of team 5.
+While team 5 claims to only accept pull requests when consensus has been
+reached
+the signee may feel this amount of control is too absolute,
+or may come to doubt team 5's goodwill.
+If a team does not agree with the decisions made in this common protocol,
+they may clone the repository, give it a new name,
+and convince the other teams to abandon team 5's repository.
+This may hurt compatibility, as it creates two different standards,
+but may protect the signee from a nefarious repository owner.
+			</p>
+		</section>
+		<section id= 'references' >
+			<h1>References</h1>
+			<ol>
+				<li><cite>Assignment PINT 2016</cite>,
+				<a href=
+'https://blackboard.saxion.nl/bbcswebdav/pid-1207983-dt-content-rid-8598870_4/xid-8598870_4'
+				>Blackboard</a></li>
+				<li><cite>OSI model</cite>, <a href= 
+				'https://en.m.wikipedia.org/wiki/OSI_model' >
+				Wikipedia</a></li>
+				<li><cite>Classic Protocol Extention</cite>,
+				<a href=
+				'http://wiki.vg/Classic_Protocol_Extension' >
+				wiki.vg</a></li>
+				<li><cite>PINT heartbeat protocol</cite>,
+				<a href=
+'https://github.com/bernard-saxion/pint-heartbeat-protocol'
+				>Github repository</a></li>
+			</ol>
+		</section>
+	</body>
+</html>
